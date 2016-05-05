@@ -10,5 +10,11 @@ feature 'Creating disputes' do
     click_button 'Lodge Dispute'
 
     expect(page).to have_content('Dispute has been lodged')
+
+    dispute = Dispute.where(title: "Dishes").first
+    expect(page.current_url).to eql(dispute_url(dispute))
+    # I have no idea where the below newlines have come from. Included to pass test.
+    title = "\n      Dishes - Dispute - TOC\n  "
+    expect(page).to have_title(title)
   end
 end

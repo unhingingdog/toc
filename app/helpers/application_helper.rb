@@ -7,4 +7,8 @@ module ApplicationHelper
       end
     end
   end
+
+  def button_action
+    @dispute.new_record? ? "Lodge" : "Amend"
+  end
 end

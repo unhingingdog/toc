@@ -1,36 +1,50 @@
 class DisputesController < ApplicationController
-  before_action :set_dispute, only: [:show]
+  before_action :set_dispute, only: [:show, :edit, :update]
 
-def index
-  @disputes = Dispute.all
-end
-
-def show
-end
-
-def new
-  @dispute = Dispute.new
-end
-
-def create
-  @dispute = Dispute.new(dispute_params)
-  if @dispute.save
-    flash[:notice] = 'Dispute has been lodged'
-    redirect_to @dispute
-  else
-    flash[:alert] = "Dispute was not created"
-    render 'new'
+  def index
+    @disputes = Dispute.all
   end
-end
 
-private
+  def show
+  end
 
-def dispute_params
-  params.require(:dispute).permit(:title, :situation)
-end
+  def new
+    @dispute = Dispute.new
+  end
 
-def set_dispute
-  @dispute = Dispute.find(params[:id])
-end
+  def create
+    @dispute = Dispute.new(dispute_params)
+    if @dispute.save
+      flash[:notice] = 'Dispute has been lodged'
+      redirect_to @dispute
+    else
+      flash[:alert] = "Dispute was not created"
+      render 'new'
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    @dispute.update(dispute_params)
+    if @dispute.save
+      flash[:notice] = "Dispute has been amended."
+      redirect_to @dispute
+    else
+      flash[:alert] = "Dispute has not been amended."
+      render 'edit'
+    end
+  end
+
+  private
+
+  def dispute_params
+    params.require(:dispute).permit(:title, :situation)
+  end
+
+  def set_dispute
+    @dispute = Dispute.find(params[:id])
+  end
 
 end

@@ -2,6 +2,7 @@ class DisputesController < ApplicationController
   before_action :set_dispute, only: [:show]
 
 def index
+  @disputes = Dispute.all
 end
 
 def show

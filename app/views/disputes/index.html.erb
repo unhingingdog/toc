@@ -1,2 +1,8 @@
 <h1> Disputes </h1>
 <%= link_to "New Dispute", new_dispute_path %>
+
+<ul>
+  <% @disputes.each do |dispute| %>
+    <li><%= link_to dispute.title, dispute %></li>
+  <% end %>
+</ul>

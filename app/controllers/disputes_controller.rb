@@ -51,6 +51,10 @@ class DisputesController < ApplicationController
 
   def set_dispute
     @dispute = Dispute.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "The dispute you were looking" +
+                    " for could not be found."
+    redirect_to disputes_path
   end
 
 end

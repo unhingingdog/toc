@@ -2,3 +2,6 @@
 <%= @dispute.title %>
 <%= @dispute.situation %>
 <%= link_to "Amend Dispute", edit_dispute_path(@dispute) %>
+<%= link_to "Revoke Dispute", dispute_path(@dispute), method: :delete,
+                                                            data: { confirm: "Are you sure you want to delete the
+                                                                          #{@dispute.title} dispute?" } %>

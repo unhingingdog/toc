@@ -1,5 +1,5 @@
 class DisputesController < ApplicationController
-  before_action :set_dispute, only: [:show, :edit, :update]
+  before_action :set_dispute, only: [:show, :edit, :update, :destroy]
 
   def index
     @disputes = Dispute.all
@@ -35,6 +35,12 @@ class DisputesController < ApplicationController
       flash[:alert] = "Dispute has not been amended."
       render 'edit'
     end
+  end
+
+  def destroy
+    @dispute.destroy
+    flash[:notice] = "Dispute has been revoked."
+    redirect_to root_path
   end
 
   private

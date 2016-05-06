@@ -1,5 +1,7 @@
 class DisputesController < ApplicationController
+  include DisputesHelper
   before_action :set_dispute, only: [:show, :edit, :update, :destroy]
+  before_action :require_signin, except: [:show, :index]
 
   def index
     @disputes = Dispute.all
@@ -46,7 +48,7 @@ class DisputesController < ApplicationController
   private
 
   def dispute_params
-    params.require(:dispute).permit(:title, :situation)
+    params.require(:dispute).permit(:title, :situation, :respondent)
   end
 
   def set_dispute
@@ -57,4 +59,10 @@ class DisputesController < ApplicationController
     redirect_to disputes_path
   end
 
+  def require_signin
+    if current_user.nil?
+      flash[:error] = "You need to sign up or sign in to continue."
+      redirect_to signin_url
+    end
+  end
 end

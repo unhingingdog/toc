@@ -2,8 +2,14 @@ require 'spec_helper'
 
 feature "Editing disputes" do
   before do
-    FactoryGirl.create(:dispute, title: "Broken dishwasher")
+    visit '/'
+    click_link 'Sign in'
+    user = FactoryGirl.create(:user)
+    fill_in 'Name', with: user.name
+    fill_in 'Password', with: user.password
+    click_button 'Sign in'
 
+    FactoryGirl.create(:dispute, title: "Broken dishwasher")
     visit root_path
     click_link "Broken dishwasher"
     click_link "Amend Dispute"

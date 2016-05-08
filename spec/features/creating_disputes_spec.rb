@@ -19,7 +19,7 @@ feature 'Creating disputes' do
 
     fill_in 'Title', with: "Dishes"
     fill_in 'Situation', with: "Guy won't do dishes"
-    fill_in 'Respondent', with: user2.name
+    fill_in 'respondent_name', with: user2.name
     click_button 'Lodge Dispute'
 
     expect(page).to have_content('Dispute has been lodged')
@@ -29,8 +29,6 @@ feature 'Creating disputes' do
     # I have no idea where the below newlines have come from. Included to pass test.
     title = "\n      Dishes - Dispute - TOC\n  "
     expect(page).to have_title(title)
-
-    expect(dispute.respondent).to eql(User.where(name: dispute.respondent).first)
   end
 
   scenario "cannot create a dispute without title" do

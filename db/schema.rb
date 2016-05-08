@@ -11,15 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506040056) do
+ActiveRecord::Schema.define(version: 20160506105010) do
 
   create_table "disputes", force: :cascade do |t|
     t.string   "title"
     t.text     "situation"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "respondent"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "applicant_id"
+    t.integer  "respondent_id"
   end
+
+  add_index "disputes", ["applicant_id"], name: "index_disputes_on_applicant_id"
+  add_index "disputes", ["respondent_id"], name: "index_disputes_on_respondent_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

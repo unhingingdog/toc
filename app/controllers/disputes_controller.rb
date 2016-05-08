@@ -16,6 +16,8 @@ class DisputesController < ApplicationController
 
   def create
     @dispute = Dispute.new(dispute_params)
+    @dispute.applicant = current_user
+    @dispute.respondent  = set_dispute_respondent
     if @dispute.save
       flash[:notice] = 'Dispute has been lodged'
       redirect_to @dispute
@@ -48,7 +50,7 @@ class DisputesController < ApplicationController
   private
 
   def dispute_params
-    params.require(:dispute).permit(:title, :situation, :respondent)
+    params.require(:dispute).permit(:title, :situation, :respondent_username)
   end
 
   def set_dispute

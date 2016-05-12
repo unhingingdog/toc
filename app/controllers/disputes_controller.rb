@@ -16,7 +16,7 @@ class DisputesController < ApplicationController
 
   def create
     @dispute = Dispute.new(dispute_params)
-    @dispute.applicant = current_user
+    @dispute.user = current_user
     @dispute.respondent  = set_dispute_respondent
     if @dispute.save
       flash[:notice] = 'Dispute has been lodged'

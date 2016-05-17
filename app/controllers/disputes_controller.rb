@@ -19,8 +19,9 @@ class DisputesController < ApplicationController
     @dispute.user = current_user
     @dispute.respondent  = set_dispute_respondent
     if @dispute.save
-      flash[:notice] = 'Dispute has been lodged'
-      redirect_to @dispute
+      DisputeMailer.dispute_activation(@dispute).deliver_now
+      flash[:notice] = 'Dispute has been lodged. Awaiting respndent\'s acceptance'
+      redirect_to root_url
     else
       flash[:alert] = "Dispute was not created"
       render 'new'

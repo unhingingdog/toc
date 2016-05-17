@@ -1,0 +1,7 @@
+<h3>Accept a dispute</h3>
+
+<p>Hi <%= @dispute.respondent.name %>,</p>
+<p>You have been tagged in a dispute by <%= @dispute.user.name %>. To accept the
+        dispute and face crowd dispute resolution, follow the link below:</p>
+
+<%= edit_dispute_activation_url(@dispute.activation_token, title: @dispute.title) %>

@@ -1,0 +1,5 @@
+Hi <%= @dispute.respondent.name %>,
+You have been tagged in a dispute by <%= @dispute.user.name %>. To accept the
+dispute and face crowd dispute resolution, follow the link below:
+
+<%= edit_dispute_activation_url(@dispute.activation_token, title: @dispute.title) %>

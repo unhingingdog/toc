@@ -1,0 +1,2 @@
+module DisputeActivationsHelper
+end

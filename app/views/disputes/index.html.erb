@@ -3,6 +3,10 @@
 
 <ul>
   <% @disputes.each do |dispute| %>
-    <li><%= link_to dispute.title, dispute %></li>
+    <% if dispute.activated? %>
+      <li><%= link_to dispute.title, dispute %></li>
+    <% else %>
+    <li><%= dispute.title + " (Not yet accepted by respondent)" %>
+    <% end %>
   <% end %>
 </ul>

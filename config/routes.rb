@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root "disputes#index"
-  resources :disputes, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  resources :disputes, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+    member do
+      put "yea" => "disputes#upvote"
+      put "nay" => "disputes#downvote"
+    end
+  end
   resources :users, only: [:new, :create, :show]
   resources :dispute_activations, only: :edit
   get "/signin", to: "sessions#new"

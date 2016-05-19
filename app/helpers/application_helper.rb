@@ -12,4 +12,9 @@ module ApplicationHelper
     @dispute.new_record? ? "Lodge" : "Amend"
   end
 
+  #sets current user using session hash
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
 end

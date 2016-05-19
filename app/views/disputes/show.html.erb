@@ -1,12 +1,26 @@
 <% title(@dispute.title, "Dispute") %>
-<%= @dispute.title %>
-<%= @dispute.situation %>
-<%= link_to @dispute.user.name, user_path(@dispute.user)%> v
-<% if @dispute.respondent %>
-  <%= link_to @dispute.respondent.name, user_path(@dispute.respondent)%>
-<% else %>
-  <%= "Respondent is not a registered user" %>
-<% end %>
+
+<h2><%= @dispute.title %></h2>
+
+<p>
+  <%= link_to @dispute.user.name, user_path(@dispute.user)%> v
+  <% if @dispute.respondent %>
+    <%= link_to @dispute.respondent.name, user_path(@dispute.respondent)%>
+  <% else %>
+    <%= "Respondent is not a registered user" %>
+  <% end %>
+</p>
+
+<p><%= @dispute.situation %></p>
+<br />
+<p>
+  <%= link_to "Yea", yea_dispute_path(@dispute), method: :put %>
+  <%= @dispute.get_upvotes.size %>
+
+  <%= link_to "Nay", nay_dispute_path(@dispute), method: :put %>
+  <%= @dispute.get_downvotes.size %>
+</p>
+
 
 <% if dispute_belongs_to_current_user? %>
   <%= link_to "Revoke Dispute", dispute_path(@dispute), method: :delete,

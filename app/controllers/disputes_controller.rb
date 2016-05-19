@@ -1,6 +1,7 @@
 class DisputesController < ApplicationController
   include DisputesHelper
-  before_action :set_dispute, only: [:show, :edit, :update, :destroy]
+  include ApplicationHelper
+  before_action :set_dispute, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :require_signin, except: [:show, :index]
 
   def index
@@ -46,6 +47,16 @@ class DisputesController < ApplicationController
     @dispute.destroy
     flash[:notice] = "Dispute has been revoked."
     redirect_to root_path
+  end
+
+  def upvote
+    @dispute.upvote_from current_user
+    redirect_to @dispute
+  end
+
+  def downvote
+    @dispute.downvote_from current_user
+    redirect_to @dispute
   end
 
   private

@@ -13,4 +13,8 @@ module DisputesHelper
       !current_user.nil?
     end
 
+    def dispute_belongs_to_current_user?
+      session[:user_id] == @dispute.user.id
+    end
+
 end

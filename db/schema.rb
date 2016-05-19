@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(version: 20160516234328) do
   create_table "disputes", force: :cascade do |t|
     t.string   "title"
     t.text     "situation"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "respondent_id"
     t.integer  "user_id"
     t.string   "activation_digest"
-    t.boolean  "activated"
+    t.boolean  "activated",         default: false
   end
 
   add_index "disputes", ["respondent_id"], name: "index_disputes_on_respondent_id"

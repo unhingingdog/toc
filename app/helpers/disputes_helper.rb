@@ -9,4 +9,8 @@ module DisputesHelper
       @respondent_user = User.find_by_name(params[:dispute][:respondent_username])
     end
 
+    def logged_in?
+      !current_user.nil?
+    end
+
 end

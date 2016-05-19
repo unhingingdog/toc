@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
 
   def create
     user = User.where(:name => params[:signin][:name]).first
-
     if user && user.authenticate(params[:signin][:password])
       session[:user_id] = user.id
       flash[:notice] = "Signed in sucessfully."
@@ -15,4 +14,11 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
+
+  def destroy
+    session.delete(:user_id)
+    @current_user = nil
+    redirect_to root_url
+  end
+  
 end

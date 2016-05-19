@@ -1,0 +1,13 @@
+<nav>
+  <% if  logged_in? %>
+    Signed in as <%= current_user.name %>.
+    <%= link_to "Sign out", signout_path, method: :delete %>
+  <% else %>
+    <%= link_to "Sign up", new_user_path %>
+    <%= link_to "Sign in", signin_path %>
+  <% end %>
+</nav>
+
+<% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>

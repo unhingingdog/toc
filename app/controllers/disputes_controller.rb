@@ -2,13 +2,22 @@ class DisputesController < ApplicationController
   include DisputesHelper
   include ApplicationHelper
   before_action :set_dispute, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
-  before_action :require_signin, except: [:show, :index]
+  before_action :require_signin, except: [:show, :index, :landing, :carousel]
+
+  def landing
+  end
+
+  def carousel
+  end
 
   def index
     @disputes = Dispute.all
   end
 
   def show
+  end
+
+  def platform
   end
 
   def new

@@ -2,14 +2,14 @@
 
 <h2><%= @dispute.title %></h2>
 
-<p>
+<h3>
   <%= link_to @dispute.user.name, user_path(@dispute.user)%> v
   <% if @dispute.respondent %>
     <%= link_to @dispute.respondent.name, user_path(@dispute.respondent)%>
   <% else %>
     <%= "Respondent is not a registered user" %>
   <% end %>
-</p>
+</h3>
 
 <p><%= @dispute.situation %></p>
 <br />

@@ -18,6 +18,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @applicant_disputes = Dispute.where(user: @user)
+    @respondent_disputes = Dispute.where(respondent: @user)
   end
 
   private

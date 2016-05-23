@@ -1,12 +1,21 @@
-<h1> Disputes </h1>
-<%= link_to "New Dispute", new_dispute_path %>
+<div class="row">
+  <div class="index-background">
+    <div class="col-md-8 col-md-offset-4">
+      <h1 id="index-h1"> Disputes </h1>
+    </div>
 
-<ul>
-  <% @disputes.each do |dispute| %>
-    <% if dispute.activated? %>
-      <li><%= link_to dispute.title, dispute %></li>
-    <% else %>
-    <li><%= dispute.title + " (Not yet accepted by respondent)" %>
-    <% end %>
-  <% end %>
-</ul>
+    <div class="disputes-list">
+      <span id="new-dispute"><%= link_to "New Dispute", new_dispute_path %></span>
+      <br />
+      <ul>
+        <% @disputes.each do |dispute| %>
+          <% if dispute.activated? %>
+            <li><%= link_to dispute.title, dispute %></li>
+          <% else %>
+            <li id="inactive"><%= dispute.title + " ( Inactive: Not yet accepted by respondent )" %><li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

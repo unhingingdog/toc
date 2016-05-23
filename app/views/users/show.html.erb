@@ -1,4 +1,14 @@
 <h1><%= @user.name %></h1>
-<h2>Applicant</h2>
+<h2>Applicant</h3>
+  <ul>
+    <% @applicant_disputes.each do |dispute| %>
+      <li><%= link_to dispute.title,dispute %></li>
+    <% end %>
+  </ul>
 
-<h2>Respondent</h2>
+<h2>Respondent</h3>
+<ul>
+  <% @respondent_disputes.each do |dispute| %>
+    <li><%= link_to dispute.title, dispute %></li>
+  <% end %>
+</ul>

@@ -1,0 +1,148 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import url(https://fonts.googleapis.com/css?family=Cinzel:400,700);
+@import url(https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,100);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+@import url(https://fonts.googleapis.com/css?family=Orbitron);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+//general
+
+h1 {
+  font-family: Orbitron;
+  font-weight: 400;
+  color: white;
+}
+
+//header
+
+nav {
+  font-family: Orbitron !important;
+  padding-top: 10px;
+  color: black;
+  a:visited {
+      color: black !important;
+  }
+
+  a:active {
+      color: black !important;
+  }
+}
+
+//landing page
+
+.landing-button {
+  border: solid;
+  padding-bottom: -10px;
+}
+
+.landing-button:hover {
+  box-shadow: inset 0 0 10px white;
+}
+
+.landing-content {
+  text-align: center;
+  color: white;
+  top:50%;
+  left: 50%;
+  transform: translate3d(-50%,-50%, 0);
+  position: absolute;
+    a {
+      color: white !important;
+      font-family: Orbitron;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    a:visited {
+        color: white !important;
+    }
+
+    a:active {
+        color: white !important;
+        text-decoration: none;
+    }
+
+    a:hover {
+      color: white !important;
+      text-decoration: none;
+    }
+}
+
+.landing-background {
+  background-color: black;
+  height: 90vh;
+  background-image: url('nodes-1.png')
+}
+
+//index
+
+.index-background {
+  background-color: black;
+  height: 90vh;
+}
+
+#index-h1 {
+  padding-top: 30px;
+}
+
+#inactive {
+  color: grey;
+  font-family: Orbitron;
+}
+
+.disputes-list {
+  padding-top: 50px;
+  padding-left: 20px;
+  font-family: Courier !important;
+  a {
+    color: white !important;
+    font-family: Orbitron;
+    font-weight: 100;
+  }
+
+  a:visited {
+      color: white !important;
+  }
+
+  a:active {
+      color: black !important;
+      background-color: white;
+      text-decoration: none;
+  }
+
+  a:hover {
+    color: black !important;
+    background-color: white;
+    text-decoration: none;
+  }
+
+  li {
+    color: white;
+    list-style-type: disc;;
+  }
+  ul {
+    padding: 20px;
+  }
+}
+
+#new-dispute {
+  color: white;
+  padding: 20px;
+}
+
+//signup/signin
+
+.session-user-h1 {
+  color: black !important;
+}
+
+// dispute form
+.disputes-form {
+  margin: 10vh;
+}
+
+.new-dispute-h1 {
+    color: black !important;
+    text-align: center;
+}

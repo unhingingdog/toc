@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  root "disputes#index"
-  resources :disputes, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+  root "disputes#landing"
+  get "/platform", to: "disputes#index"
+  resources :disputes, only: [:index, :new, :create, :show,
+                                                    :edit, :update, :destroy, :carousel] do
     member do
       put "yea" => "disputes#upvote"
       put "nay" => "disputes#downvote"

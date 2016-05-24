@@ -10,8 +10,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in(@user)
-      flash[:notice] = "You have signed up sucessfully. Now logged in."
-      redirect_to disputes_path
+      flash[:notice] = "You have signed up sucessfully. Now logged in. Start voting!"
+      redirect_to carousel_path
     else
       render 'new'
     end

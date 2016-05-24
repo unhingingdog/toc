@@ -8,6 +8,10 @@ class DisputesController < ApplicationController
   end
 
   def carousel
+    @dispute = Dispute.order("RANDOM()").first
+     if current_user.voted_for? @dispute
+       redirect_to carousel_path
+     end
   end
 
   def index
@@ -15,9 +19,6 @@ class DisputesController < ApplicationController
   end
 
   def show
-  end
-
-  def platform
   end
 
   def new

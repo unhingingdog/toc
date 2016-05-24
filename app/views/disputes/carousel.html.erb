@@ -1,14 +1,31 @@
-<div class="row">
-  <div class="col-sm-12">
-    <div id='dispute-slider' class="carousel slide" data-ride="carousel">
-      <!-- wrapper -->
-      <div class="carousel-inner" role="listbox">
-        <div class="item-active">
-          <!--first slide-->
-        </div>
-      </div>
-      <!-- vote & next -->
+<% title(@dispute.title, "Dispute") %>
 
-    </div>
-  </div>
-</div>
+<h2><%= @dispute.title %></h2>
+
+<h3>
+  <%= link_to @dispute.user.name, user_path(@dispute.user)%> v
+  <% if @dispute.respondent %>
+    <%= link_to @dispute.respondent.name, user_path(@dispute.respondent)%>
+  <% else %>
+    <%= "Respondent is not a registered user" %>
+  <% end %>
+</h3>
+
+<p><%= @dispute.situation %></p>
+<br />
+<p>
+  <%= link_to "Yea", yea_dispute_path(@dispute), method: :put %>
+  <%= @dispute.get_upvotes.size %>
+
+  <%= link_to "Nay", nay_dispute_path(@dispute), method: :put %>
+  <%= @dispute.get_downvotes.size %>
+</p>
+
+<p><%= link_to "next dispute", carousel_path %></p>
+
+
+<% if dispute_belongs_to_current_user? %>
+  <%= link_to "Revoke Dispute", dispute_path(@dispute), method: :delete,
+                                                              data: { confirm: "Are you sure you want to delete the
+                                                                            #{@dispute.title} dispute?" } %>
+<% end %>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root "disputes#landing"
-  get "/platform", to: "disputes#index"
+
   resources :disputes, only: [:index, :new, :create, :show,
                                                     :edit, :update, :destroy, :carousel] do
     member do
@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       put "nay" => "disputes#downvote"
     end
   end
+  get "/carousel", to: "disputes#carousel"
   resources :users, only: [:new, :create, :show]
   resources :dispute_activations, only: :edit
   get "/signin", to: "sessions#new"

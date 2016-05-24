@@ -21,6 +21,7 @@
   <%= @dispute.get_downvotes.size %>
 </p>
 
+<p><%= link_to "next dispute", carousel_path %></p>
 
 <% if dispute_belongs_to_current_user? %>
   <%= link_to "Revoke Dispute", dispute_path(@dispute), method: :delete,

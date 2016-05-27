@@ -1,0 +1,28 @@
+<% title(@dispute.title, "Dispute") %>
+
+<h2><%= @dispute.title %></h2>
+<div class="case-title">
+    (<%= link_to @dispute.user.name, user_path(@dispute.user)%> v
+    <% if @dispute.respondent %>
+      <%= link_to @dispute.respondent.name, user_path(@dispute.respondent)%>
+    <% else %>
+      <%= "Unregistered respondent" %>
+    <% end %>)
+</div>
+<p>Situation:</p>
+<p><%= @dispute.situation %></p>
+<p>Issue:</p>
+<p><%= @dispute.issue %></p>
+<br />
+<% if settled? %>
+  <%= render 'settled' %>
+<% else %>
+  <%= render 'voting_panel' %>
+<% end %>
+<p><%= @dispute.crowd_size - @dispute.votes_for.size %> votes left before this dispute is settled.</p>
+<% if dispute_belongs_to_current_user? %>
+  <%= link_to "Revoke Dispute", dispute_path(@dispute), method: :delete,
+                                                              data: { confirm: "Are you sure you want to delete the
+                                                                            #{@dispute.title} dispute?" } %>
+<% end %>
+<p><%= link_to "next dispute", carousel_path %></p>

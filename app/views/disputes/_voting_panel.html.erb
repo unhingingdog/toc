@@ -3,7 +3,9 @@
     (Yay: <%= @dispute.get_upvotes.size %> Nay:   <%= @dispute.get_downvotes.size %>)
 <% else %>
   <% if current_user %>
-    <% unless current_user == @dispute.user || current_user == @dispute.respondent %>
+    <% if current_user == @dispute.user || current_user == @dispute.respondent %>
+      <%= "Parties to the dispute cannot vote." %>
+    <% else %>
       <%= link_to "Yea", yea_dispute_path(@dispute), method: :put %>
       <%= link_to "Nay", nay_dispute_path(@dispute), method: :put %>
     <% end %>

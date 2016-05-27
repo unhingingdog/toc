@@ -75,6 +75,13 @@ nav {
   background-image: url('nodes-1.png')
 }
 
+.landing-links {
+  a:hover {
+    color: white !important;
+    text-decoration: underline;
+  }
+}
+
 //index
 
 .index-background {

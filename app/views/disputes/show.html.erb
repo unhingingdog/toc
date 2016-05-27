@@ -13,13 +13,12 @@
 
 <p><%= @dispute.situation %></p>
 <br />
-<p>
-  <%= link_to "Yea", yea_dispute_path(@dispute), method: :put %>
-  <%= @dispute.get_upvotes.size %>
 
-  <%= link_to "Nay", nay_dispute_path(@dispute), method: :put %>
-  <%= @dispute.get_downvotes.size %>
-</p>
+<% if settled? %>
+  <%= render 'settled' %>
+<% else %>
+  <%= render 'voting_panel' %>
+<% end %>
 
 <p><%= link_to "next dispute", carousel_path %></p>
 

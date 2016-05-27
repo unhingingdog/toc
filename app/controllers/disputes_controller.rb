@@ -8,8 +8,8 @@ class DisputesController < ApplicationController
   end
 
   def carousel
-    @dispute = Dispute.order("RANDOM()").first
-     if current_user.voted_for? @dispute
+    @dispute = Dispute.where(activated: true).order("RANDOM()").first
+     if current_user && current_user.voted_for?(@dispute) || settled?
        redirect_to carousel_path
      end
   end
@@ -31,7 +31,8 @@ class DisputesController < ApplicationController
     @dispute.respondent  = set_dispute_respondent
     if @dispute.save
       DisputeMailer.dispute_activation(@dispute).deliver_now
-      flash[:notice] = 'Dispute has been lodged. Awaiting respndent\'s acceptance'
+      flash[:notice] = "Dispute has been lodged. Awaiting
+                                      #{@dispute.respondent.name}'s email  acceptance."
       redirect_to root_url
     else
       flash[:alert] = "Dispute was not created"
@@ -88,5 +89,9 @@ class DisputesController < ApplicationController
       flash[:error] = "You need to sign up or sign in to continue."
       redirect_to signin_url
     end
+  end
+
+  def settled?
+    @dispute.votes_for.size > 10
   end
 end

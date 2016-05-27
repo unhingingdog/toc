@@ -1,0 +1,7 @@
+<p>
+  <%= link_to "Yea", yea_dispute_path(@dispute), method: :put %>
+  <%= @dispute.get_upvotes.size %>
+
+  <%= link_to "Nay", nay_dispute_path(@dispute), method: :put %>
+  <%= @dispute.get_downvotes.size %>
+</p>

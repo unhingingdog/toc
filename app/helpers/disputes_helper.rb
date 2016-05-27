@@ -12,4 +12,12 @@ module DisputesHelper
       session[:user_id] == @dispute.user.id
     end
 
+    def settled?
+      @dispute.votes_for.size > 10
+    end
+
+    def winner
+      @dispute.get_upvotes.size > @dispute.get_downvotes.size ? "YEA!" : "NAY!"
+    end
+
 end

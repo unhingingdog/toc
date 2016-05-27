@@ -28,15 +28,27 @@ class DisputesController < ApplicationController
   def create
     @dispute = Dispute.new(dispute_params)
     @dispute.user = current_user
-    @dispute.respondent  = set_dispute_respondent
-    if @dispute.save
-      DisputeMailer.dispute_activation(@dispute).deliver_now
-      flash[:notice] = "Dispute has been lodged. Awaiting
-                                      #{@dispute.respondent.name}'s email  acceptance."
-      redirect_to root_url
+    #helper method to set respondent with :respondent_username .
+    set_dispute_respondent
+    if respondent_is_a_user?
+      if @dispute.save
+        DisputeMailer.dispute_activation(@dispute).deliver_now
+        flash[:notice] = "Dispute has been lodged. Awaiting
+                                        #{@dispute.respondent.name}'s email  acceptance."
+        redirect_to root_url
+      else
+        flash[:alert] = "Dispute was not created"
+        render 'new'
+      end
     else
-      flash[:alert] = "Dispute was not created"
-      render 'new'
+      if @dispute.save
+        @dispute.update_attribute(:activated, true)
+        flash[:notice] = "Dispute has been lodged."
+        redirect_to @dispute
+      else
+        flash[:alert] = "Dispute was not created"
+        render 'new'
+      end
     end
   end
 

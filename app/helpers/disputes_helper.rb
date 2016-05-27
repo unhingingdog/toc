@@ -1,7 +1,12 @@
 module DisputesHelper
     #sets dispute respondent using respondent_username form param
     def set_dispute_respondent
-      @respondent_user = User.find_by_name(params[:dispute][:respondent_username])
+      respondent = User.find_by_name(params[:dispute][:respondent_username])
+      @dispute.respondent  = respondent
+    end
+
+    def respondent_is_a_user?
+      !@dispute.respondent.nil?
     end
 
     def logged_in?

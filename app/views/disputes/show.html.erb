@@ -1,16 +1,16 @@
 <% title(@dispute.title, "Dispute") %>
 
 <h2><%= @dispute.title %></h2>
-
-<h3>
-  <%= link_to @dispute.user.name, user_path(@dispute.user)%> v
-  <% if @dispute.respondent %>
-    <%= link_to @dispute.respondent.name, user_path(@dispute.respondent)%>
-  <% else %>
-    <%= "Respondent is not a registered user" %>
-  <% end %>
-</h3>
-
+<div class="case-title">
+    (<%= link_to @dispute.user.name, user_path(@dispute.user)%> v
+    <% if @dispute.respondent %>
+      <%= link_to @dispute.respondent.name, user_path(@dispute.respondent)%>
+    <% else %>
+      <%= "Unregistered respondent" %>
+    <% end %>)
+</div>
+<br />
+<p>Situation:</p>
 <p><%= @dispute.situation %></p>
 <br />
 

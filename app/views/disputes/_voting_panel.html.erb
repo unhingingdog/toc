@@ -2,8 +2,16 @@
   <% if current_user && current_user.voted_for?(@dispute) %>
     (Yay: <%= @dispute.get_upvotes.size %> Nay:   <%= @dispute.get_downvotes.size %>)
 <% else %>
+  <% if current_user %>
+    <% unless current_user == @dispute.user || current_user == @dispute.respondent %>
+      <%= link_to "Yea", yea_dispute_path(@dispute), method: :put %>
+      <%= link_to "Nay", nay_dispute_path(@dispute), method: :put %>
+    <% end %>
+  <% else %>
   <%= link_to "Yea", yea_dispute_path(@dispute), method: :put %>
   <%= link_to "Nay", nay_dispute_path(@dispute), method: :put %>
+  <% end %>
+
   <% if current_user.nil? %>
     (Please Sign in to vote)
   <% end %>

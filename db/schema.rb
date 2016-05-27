@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519070623) do
+ActiveRecord::Schema.define(version: 20160527040224) do
 
   create_table "disputes", force: :cascade do |t|
     t.string   "title"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160519070623) do
     t.integer  "user_id"
     t.string   "activation_digest"
     t.boolean  "activated",         default: false
+    t.integer  "crowd_size"
   end
 
   add_index "disputes", ["respondent_id"], name: "index_disputes_on_respondent_id"

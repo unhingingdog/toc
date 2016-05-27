@@ -85,7 +85,7 @@ class DisputesController < ApplicationController
   private
 
   def dispute_params
-    params.require(:dispute).permit(:title, :situation, :respondent_username)
+    params.require(:dispute).permit(:title, :situation, :respondent_username, :crowd_size)
   end
 
   def set_dispute
@@ -104,6 +104,6 @@ class DisputesController < ApplicationController
   end
 
   def settled?
-    @dispute.votes_for.size > 16
+    @dispute.votes_for.size >= @dispute.crowd_size
   end
 end

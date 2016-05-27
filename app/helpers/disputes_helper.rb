@@ -18,7 +18,7 @@ module DisputesHelper
     end
 
     def settled?
-      @dispute.votes_for.size > 10
+      @dispute.votes_for.size > 16
     end
 
     def winner

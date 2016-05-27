@@ -9,7 +9,10 @@
       <%= "Unregistered respondent" %>
     <% end %>)
 </div>
+<p>Situation:</p>
 <p><%= @dispute.situation %></p>
+<p>Issue:</p>
+<p><%= @dispute.issue %></p>
 <br />
 <% if settled? %>
   <%= render 'settled' %>

@@ -85,7 +85,7 @@ class DisputesController < ApplicationController
   private
 
   def dispute_params
-    params.require(:dispute).permit(:title, :situation, :respondent_username, :crowd_size)
+    params.require(:dispute).permit(:title, :situation, :respondent_username, :crowd_size, :issue)
   end
 
   def set_dispute

@@ -7,12 +7,24 @@
       <% if current_user == @dispute.user || current_user == @dispute.respondent %>
         <%= "Parties to the dispute cannot vote." %>
       <% else %>
-        <span class="glyphicon glyphicon-circle-arrow-up"><%= link_to "Yea", yea_dispute_path(@dispute), method: :put %></i>
-        <i class="glyphicon glyphicon-circle-arrow-down"><%= link_to "Nay", nay_dispute_path(@dispute), method: :put %></i>
+
+        <%= link_to yea_dispute_path(@dispute), method: :put, class: "btn btn-default" do %>
+          <i class="glyphicon glyphicon-thumbs-up">Yea</i>
+        <% end %>
+        <%= link_to nay_dispute_path(@dispute), method: :put, class: "btn btn-default" do %>
+          <i class="glyphicon glyphicon-thumbs-down">Nay</i>
+        <% end %>
+
       <% end %>
     <% else %>
-    <i class="glyphicon glyphicon-circle-arrow-up"><%= link_to "Yea", yea_dispute_path(@dispute), method: :put %></i>
-    <i class="glyphicon glyphicon-circle-arrow-down"><%= link_to "Nay", nay_dispute_path(@dispute), method: :put %></i>
+
+      <%= link_to yea_dispute_path(@dispute), method: :put, class: "btn btn-default", remote: true do %>
+        <i class="glyphicon glyphicon-thumbs-up">Yea</i>
+      <% end %>
+      <%= link_to nay_dispute_path(@dispute), method: :put, class: "btn btn-default", remote: true  do %>
+        <i class="glyphicon glyphicon-thumbs-down">Nay</i>
+      <% end %>
+
     <% end %>
 
     <% if current_user.nil? %>

@@ -1,5 +1,5 @@
 class Dispute < ActiveRecord::Base
-  validates :title, :situation, presence: true
+  validates :title, :situation, :issue, :crowd_size, presence: true
   belongs_to :user
   belongs_to :respondent, class_name: "User", foreign_key: 'respondent_id'
   acts_as_votable

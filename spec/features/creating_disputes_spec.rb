@@ -3,48 +3,68 @@ require 'spec_helper'
 feature 'Creating disputes' do
   before do
     visit '/'
-    click_link 'Sign in'
-    #applicant
     user = FactoryGirl.create(:user)
-
+    click_link 'Sign in'
     fill_in 'Name', with: user.name
     fill_in 'Password', with: user.password
     click_button 'Sign in'
-    click_link 'New Dispute'
   end
 
   scenario 'can create a dispute' do
-    #respondent
-    user2 = FactoryGirl.create(:user, name: "Example2")
-
-    fill_in 'Title', with: "Dishes"
-    fill_in 'Situation', with: "Guy won't do dishes"
-    fill_in 'respondent_name', with: user2.name
+    click_link 'Lodge Dispute'
+    fill_in 'dispute_title', with: "random dispute."
+    fill_in 'dispute_situation', with: "the situation."
+    fill_in 'dispute_issue', with: "This is the issue."
+    select '5', from: 'dispute_crowd_size'
     click_button 'Lodge Dispute'
-
     expect(page).to have_content('Dispute has been lodged')
-
-    dispute = Dispute.where(title: "Dishes").first
-    expect(page.current_url).to eql(dispute_url(dispute))
-    # I have no idea where the below newlines have come from. Included to pass test.
-    title = "\n      Dishes - Dispute - TOC\n  "
-    expect(page).to have_title(title)
   end
 
-  scenario "cannot create a dispute without title" do
-    fill_in 'Situation', with: "Guy won't do dishes"
+  scenario "cannot create a dispute without situation" do
+    click_link 'Lodge Dispute'
+    fill_in 'dispute_title', with: "random dispute."
+    fill_in 'dispute_situation', with: ""
+    fill_in 'dispute_issue', with: "This is the issue."
+    select '5', from: 'dispute_crowd_size'
     click_button 'Lodge Dispute'
 
     expect(page).to have_content("Dispute was not created")
-    expect(page).to have_content("Title can't be blank")
+    expect(page).to have_content("can't be blank")
   end
 
-  scenario "cannot create a dispute without a situation" do
-    fill_in 'Title', with: "Dishes"
+  scenario "cannot create a dispute without a title" do
+    click_link 'Lodge Dispute'
+    fill_in 'dispute_title', with: ""
+    fill_in 'dispute_situation', with: "hello"
+    fill_in 'dispute_issue', with: "This is the issue."
+    select '5', from: 'dispute_crowd_size'
     click_button 'Lodge Dispute'
 
     expect(page).to have_content("Dispute was not created")
-    expect(page).to have_content("Situation can't be blank")
+    expect(page).to have_content("can't be blank")
+  end
+
+  scenario "cannot create a dispute without an issue" do
+    click_link 'Lodge Dispute'
+    fill_in 'dispute_title', with: "hello"
+    fill_in 'dispute_situation', with: "hello"
+    fill_in 'dispute_issue', with: ""
+    select '5', from: 'dispute_crowd_size'
+    click_button 'Lodge Dispute'
+
+    expect(page).to have_content("Dispute was not created")
+    expect(page).to have_content("can't be blank")
+  end
+
+  scenario "cannot create a dispute without a crowd size" do
+    click_link 'Lodge Dispute'
+    fill_in 'dispute_title', with: "hello"
+    fill_in 'dispute_situation', with: "hello"
+    fill_in 'dispute_issue', with: ""
+    click_button 'Lodge Dispute'
+
+    expect(page).to have_content("Dispute was not created")
+    expect(page).to have_content("can't be blank")
   end
 
 end

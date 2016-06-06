@@ -14,7 +14,7 @@
     <p><%= @dispute.situation %></p>
     <h3>Issue:</h3>
     <p id="issue"><%= @dispute.issue %></p>
-    
+
     <% if dispute_belongs_to_current_user? %>
       <%= link_to "Revoke Dispute", dispute_path(@dispute), method: :delete,
                       data: { confirm: "Are you sure you want to delete the
@@ -28,8 +28,8 @@
       <%= render 'voting_panel' %>
     <% end %>
     <div class="voting-panel">
-      <p class="until-settled">
-        <%= @dispute.crowd_size - @dispute.votes_for.size %> votes left until this dispute is settled.
+        <%= pluralize((@dispute.crowd_size - @dispute.votes_for.size), "vote") %>
+        votes left until this dispute is settled.
       </p>
     </div>
 </div>

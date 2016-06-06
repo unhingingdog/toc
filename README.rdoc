@@ -1,28 +1,29 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Tyranny of the Crowd.
 
-Things you may want to cover:
+See it at: http://polar-springs-17909.herokuapp.com
 
-* Ruby version
+This is a toy dispute resolution app. Users can vote on disputes, and once the
+requisite number of votes is reached, the dispute is settled.
 
-* System dependencies
+It works as follows:
 
-* Configuration
+1. A user signs up
+2. The user can lodge disputes and tag other users in them. The user must specify a
+   title, situation, issue and crowd size.
+3. If another user is tagged, that user is required to accept
+   the dispute via email before it becomes active. If no respondent is
+   chosen, the dispute instantly becomes active.
+4. Users will vote on the dispute. Once the crowd size is reached (always an odd
+   number), the dispute is settled in favour of the side with the highest vote.
+5. Users whom are not signed up can view disputes, but not vote on disputes or lodge
+   disputes.
 
-* Database creation
+Still to do:
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+ - Add more tests. Currently, tests only cover the creation of users and disputes.
+ - Fix the activerecord query on the carousel (root) page. Currently it pulls a
+   random dispute out of the database and refreshes if the user has voted on the
+   dispute or the dispute is settled. If no fresh disputes remain, the app starts
+   infinitely refreshing and breaks.

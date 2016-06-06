@@ -23,6 +23,7 @@ It works as follows:
 Still to do:
 
  - Add more tests. Currently, tests only cover the creation of users and disputes.
+   I started with TDD, but it was slowing me down (I know that's bad...).
  - Fix the activerecord query on the carousel (root) page. Currently it pulls a
    random dispute out of the database and refreshes if the user has voted on the
    dispute or the dispute is settled. If no fresh disputes remain, the app starts

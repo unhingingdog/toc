@@ -13,7 +13,14 @@
     <h3>Situation:</h3>
     <p><%= @dispute.situation %></p>
     <h3>Issue:</h3>
-    <p><%= @dispute.issue %></p>
+    <p id="issue"><%= @dispute.issue %></p>
+    
+    <% if dispute_belongs_to_current_user? %>
+      <%= link_to "Revoke Dispute", dispute_path(@dispute), method: :delete,
+                      data: { confirm: "Are you sure you want to delete the
+                                    #{@dispute.title} dispute?" } %>
+    <% end %>
+    <br />
     <br />
     <% if settled? %>
       <%= render 'settled' %>
@@ -21,13 +28,12 @@
       <%= render 'voting_panel' %>
     <% end %>
     <div class="voting-panel">
-      <p><%= @dispute.crowd_size - @dispute.votes_for.size %> votes left until this dispute is settled.</p>
+      <p class="until-settled">
+        <%= @dispute.crowd_size - @dispute.votes_for.size %> votes left until this dispute is settled.
+      </p>
     </div>
-    <% if dispute_belongs_to_current_user? %>
-      <%= link_to "Revoke Dispute", dispute_path(@dispute), method: :delete,
-                                                                  data: { confirm: "Are you sure you want to delete the
-                                                                                #{@dispute.title} dispute?" } %>
-    <% end %>
 </div>
-  <p><%= link_to "next dispute", carousel_path %></p>
-</div>
+
+<%= link_to carousel_path, method: :get, class: "btn btn-default" do %>
+  Next Dispute <i class="glyphicon glyphicon-menu-right"></i>
+<% end %>

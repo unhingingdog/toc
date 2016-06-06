@@ -19,14 +19,23 @@ h1 {
 nav {
   font-family: Orbitron !important;
   padding-top: 10px;
-  color: black;
+  color: white;
+  background-color: black;
+  padding-left: 30px;
+  padding-bottom: 7px;
+  border-radius: 10px;
   a:visited {
-      color: black !important;
+      color: white !important;
   }
 
   a:active {
-      color: black !important;
+      color: white !important;
   }
+}
+
+.navbar-right {
+  right: 60px;
+  padding-right: 40px;
 }
 
 //landing page
@@ -161,21 +170,43 @@ nav {
 }
 
 .dispute-container {
-  border: 1px solid;
+  text-align: center;
   padding: 10px;
-  margin: 10px;
-  font-family: Orbitron;
+  margin: 20px;
+  font-family: Ubuntu;
 }
 
 .dispute-body {
   font-family: Ubuntu;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: black;
-  color: white;
-  padding: 15px;
+  padding: 5px 10px 10px 5px;
 }
 
 .voting-panel {
-  font-family: Orbitron;
+  font-family: Ubuntu;
+}
+
+.settled {
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: orange;
+  border: 1px solid;
+}
+
+.parties {
+  color: red;
+  border: 1px solid red;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.until-settled {
+  color: gray;
+}
+
+#issue {
+  font-weight: bold;
+  text-decoration: underline;
 }

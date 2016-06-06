@@ -1,6 +1,8 @@
-<p>The crowd has spoken<p>
-<p>
-  The victor is <%= winner %>
-  (<%= @dispute.get_upvotes.size %> - 
-  <%= @dispute.get_downvotes.size %>)
-</p>
+<div class="settled">
+  <p>The crowd has spoken<p>
+  <p>
+    <%= @dispute.issue %> - <%= winner %>
+    (<%= @dispute.get_upvotes.size %> -
+    <%= @dispute.get_downvotes.size %>)
+  </p>
+</div>

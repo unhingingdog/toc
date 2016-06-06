@@ -1,32 +1,33 @@
-<div class="voting-panel ">
+<div class="voting-panel">
   <p>
     <% if current_user && current_user.voted_for?(@dispute) %>
       (Yay: <%= @dispute.get_upvotes.size %> Nay:   <%= @dispute.get_downvotes.size %>)
   <% else %>
     <% if current_user %>
       <% if current_user == @dispute.user || current_user == @dispute.respondent %>
-        <%= "Parties to the dispute cannot vote." %>
+        <span class="parties"><%= "Parties to the dispute cannot vote." %></span>
       <% else %>
 
-        <%= link_to yea_dispute_path(@dispute), method: :put, class: "btn btn-default" do %>
-          <i class="glyphicon glyphicon-thumbs-up">Yea</i>
+        <%= link_to yea_dispute_path(@dispute), method: :put, class: "btn btn-info" do %>
+          <i class="glyphicon glyphicon-thumbs-up"> Yea</i>
         <% end %>
-        <%= link_to nay_dispute_path(@dispute), method: :put, class: "btn btn-default" do %>
-          <i class="glyphicon glyphicon-thumbs-down">Nay</i>
+        <%= link_to nay_dispute_path(@dispute), method: :put, class: "btn btn-info" do %>
+          <i class="glyphicon glyphicon-thumbs-down"> Nay</i>
         <% end %>
 
       <% end %>
     <% else %>
 
-      <%= link_to yea_dispute_path(@dispute), method: :put, class: "btn btn-default", remote: true do %>
-        <i class="glyphicon glyphicon-thumbs-up">Yea</i>
+      <%= link_to yea_dispute_path(@dispute), method: :put, class: "btn btn-warning", remote: true do %>
+        <i class="glyphicon glyphicon-thumbs-up"> Yay</i>
       <% end %>
-      <%= link_to nay_dispute_path(@dispute), method: :put, class: "btn btn-default", remote: true  do %>
-        <i class="glyphicon glyphicon-thumbs-down">Nay</i>
+      <%= link_to nay_dispute_path(@dispute), method: :put, class: "btn btn-warning", remote: true  do %>
+        <i class="glyphicon glyphicon-thumbs-down"> Nay</i>
       <% end %>
 
     <% end %>
-
+    <br />
+    <br />
     <% if current_user.nil? %>
       (Please Sign in to vote)
     <% end %>

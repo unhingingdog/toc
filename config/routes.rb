@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "disputes#landing"
+  root "disputes#carousel"
 
   resources :disputes, only: [:index, :new, :create, :show,
                                                     :edit, :update, :destroy, :carousel] do

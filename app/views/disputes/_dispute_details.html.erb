@@ -28,8 +28,9 @@
       <%= render 'voting_panel' %>
     <% end %>
     <div class="voting-panel">
+      <p class="until-settled">
         <%= pluralize((@dispute.crowd_size - @dispute.votes_for.size), "vote") %>
-        votes left until this dispute is settled.
+         left until this dispute is settled.
       </p>
     </div>
 </div>

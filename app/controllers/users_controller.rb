@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in(@user)
       flash[:notice] = "You have signed up sucessfully. Now logged in. Start voting!"
-      redirect_to carousel_path
+      redirect_to root_path
     else
       render 'new'
     end
